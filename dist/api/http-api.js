@@ -80,7 +80,7 @@ var HttpApi = (function () {
         this.channel.presence.getMembers(channelName).then(function (members) {
             var users = [];
             _.uniqBy(members, 'user_id').forEach(function (member) {
-                users.push({ id: member.user_id });
+                users.push({ id: member.user_id, user_info: member.user_info });
             });
             res.json({ users: users });
         }, function (error) { return log_1.Log.error(error); });
