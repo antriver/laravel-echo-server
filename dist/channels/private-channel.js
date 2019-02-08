@@ -15,6 +15,9 @@ var PrivateChannel = (function () {
             headers: (data.auth && data.auth.headers) ? data.auth.headers : {},
             rejectUnauthorized: false
         };
+        if (this.options.devMode) {
+            log_1.Log.info("[" + new Date().toLocaleTimeString() + "] - Sending auth request to: " + options.url + "\n");
+        }
         return this.serverRequest(socket, options);
     };
     PrivateChannel.prototype.authHost = function (socket) {

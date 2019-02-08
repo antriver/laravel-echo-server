@@ -13,6 +13,7 @@ var HttpApi = (function () {
     HttpApi.prototype.init = function () {
         var _this = this;
         this.corsMiddleware();
+        this.express.get('/', function (req, res) { return _this.getRoot(req, res); });
         this.express.get('/apps/:appId/status', function (req, res) { return _this.getStatus(req, res); });
         this.express.get('/apps/:appId/channels', function (req, res) { return _this.getChannels(req, res); });
         this.express.get('/apps/:appId/channels/:channelName', function (req, res) { return _this.getChannel(req, res); });
@@ -28,6 +29,9 @@ var HttpApi = (function () {
                 next();
             });
         }
+    };
+    HttpApi.prototype.getRoot = function (req, res) {
+        res.send('OK');
     };
     HttpApi.prototype.getStatus = function (req, res) {
         res.json({
